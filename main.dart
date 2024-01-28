@@ -34,12 +34,10 @@ class JargonLensHomePage extends StatelessWidget {
           const SizedBox(
             height: 150,
           ),
-          const Image(
-            width: 300,
-            height: 300,
-            image: NetworkImage(
-              'https://cdn-icons-png.flaticon.com/128/3898/3898082.png',
-            ),
+          Image.asset(
+            'Images/JARGON_LENS_LOGO3.png',
+            width: 200,
+            height: 200,
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
