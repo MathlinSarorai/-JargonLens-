@@ -1,10 +1,9 @@
+import 'package:dating_app/translator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'dart:async';
-import 'package:dating_app/camera.dart';
-import 'package:dating_app/upload.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -171,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // ignore: use_build_context_synchronously
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
                   );
                 } else {
                   setState(() {
@@ -309,7 +308,7 @@ class _SignUPState extends State<SignUP> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
               );
             },
             child: Text(
@@ -318,72 +317,6 @@ class _SignUPState extends State<SignUP> {
             ),
           )
         ]));
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Scanner()),
-                );
-              },
-              icon: Icon(
-                MdiIcons.camera,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Scanner',
-                style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Upload()),
-                );
-              },
-              icon: Icon(
-                MdiIcons.upload,
-                color: Colors.white,
-              ),
-              label: Text(
-                'Upload ',
-                style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 
