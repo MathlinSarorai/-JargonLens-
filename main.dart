@@ -248,55 +248,83 @@ class _SignUPState extends State<SignUP> {
         appBar: AppBar(
           title: const Text('Welcome to Jargon Lens'),
           backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
         ),
         body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           const SizedBox(
+            height: 30,
+          ),
+          Image.asset(
+            'Images/JARGON_LENS_LOGO3.png',
+            width: 100,
             height: 100,
           ),
-          TextField(
-            controller: _usernameController,
-            decoration: InputDecoration(
-              icon: Icon(
-                MdiIcons.account,
-                color: Colors.black,
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Sign Up',
+            style: GoogleFonts.philosopher(fontSize: 30, color: Colors.black),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(
+                icon: Icon(
+                  MdiIcons.account,
+                  color: Colors.black,
+                ),
+                labelText: 'Username',
               ),
-              labelText: 'Username',
             ),
           ),
           const SizedBox(height: 20),
-          TextField(
-            controller: _emailController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              icon: Icon(
-                Icons.mail_lock,
-                color: Colors.black,
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: TextField(
+              controller: _emailController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                icon: Icon(
+                  Icons.mail_lock,
+                  color: Colors.black,
+                ),
+                labelText: 'Email ID',
               ),
-              labelText: 'Email ID',
             ),
           ),
           const SizedBox(height: 20),
-          TextField(
-            controller: _phoneController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              icon: Icon(
-                Icons.phone,
-                color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: TextField(
+              controller: _phoneController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                icon: Icon(
+                  Icons.phone,
+                  color: Colors.black,
+                ),
+                labelText: 'Phone Number',
               ),
-              labelText: 'Phone Number',
             ),
           ),
           const SizedBox(height: 20),
-          TextField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              icon: Icon(
-                Icons.password_sharp,
-                color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: const InputDecoration(
+                icon: Icon(
+                  Icons.password_sharp,
+                  color: Colors.black,
+                ),
+                labelText: 'Password',
               ),
-              labelText: 'Password',
             ),
           ),
           const SizedBox(height: 30),
@@ -313,7 +341,7 @@ class _SignUPState extends State<SignUP> {
             },
             child: Text(
               'Register',
-              style: GoogleFonts.lato(fontSize: 20),
+              style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
             ),
           )
         ]));
