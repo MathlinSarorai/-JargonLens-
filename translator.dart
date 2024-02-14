@@ -1,6 +1,7 @@
 import 'dart:io';
-
+import 'package:dating_app/translation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Welcome to Jargon Lense',
+          'Happy Translating!',
           style: TextStyle(fontSize: 20),
         ),
         backgroundColor: Colors.black,
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.grey[300]!,
                   ),
                 if (imageFile != null) Image.file(File(imageFile!.path)),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -70,10 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 5),
-                            child: Column(
+                            child: const Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.image,
                                   size: 30,
                                   color: Colors.white,
@@ -104,10 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Container(
                             margin: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 5),
-                            child: Column(
+                            child: const Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.camera_alt,
+                                Icon(Icons.camera_alt,
                                     size: 30, color: Colors.white),
                                 Text(
                                   "Camera",
@@ -123,11 +124,47 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  child: Text(
-                    scannedText,
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                Column(
+                  children: [
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            style: BorderStyle.solid,
+                            width: 5,
+                          ),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          scannedText,
+                          selectionColor: Colors.red,
+                          textAlign: TextAlign.left,
+                          style: GoogleFonts.rubik(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Translation()),
+                        );
+                      },
+                      child: Text(
+                        'Translate',
+                        style:
+                            GoogleFonts.lato(fontSize: 20, color: Colors.white),
+                      ),
+                    )
+                  ],
                 )
               ],
             )),
@@ -137,7 +174,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getImage(ImageSource source) async {
     try {
-      final pickedImage = await ImagePicker().pickImage(source: source);
+      final pickedImage = await ImagePicker().pickImage(
+        source: source,
+      );
       if (pickedImage != null) {
         textScanning = true;
         imageFile = pickedImage;
