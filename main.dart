@@ -111,117 +111,120 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 80,
-            ),
-            Text(
-              'Login',
-              style: GoogleFonts.courgette(
-                color: Colors.black,
-                fontSize: 40,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 80,
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            TextField(
-              style: GoogleFonts.philosopher(
-                  color: Colors.black, fontWeight: FontWeight.w300),
-              controller: _usernameController,
-              decoration: InputDecoration(
-                icon: Icon(
-                  MdiIcons.account,
-                  color: Colors.black,
-                  size: 27,
-                ),
-                labelText: 'Username',
-              ),
-            ),
-            const SizedBox(height: 25),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                icon: Icon(
-                  Icons.password,
-                  color: Colors.black,
-                ),
-                labelText: 'Password',
-              ),
-            ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-              ),
-              onPressed: () async {
-                String enteredUsername = _usernameController.text;
-                String enteredPassword = _passwordController.text;
-
-                AuthService authService = AuthService();
-                bool isAuthenticated =
-                    await authService.login(enteredUsername, enteredPassword);
-
-                if (isAuthenticated) {
-                  // ignore: use_build_context_synchronously
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
-                } else {
-                  setState(() {
-                    isLoginFailed = true;
-                  });
-                }
-              },
-              child: Text(
+              Text(
                 'Login',
-                style:
-                    GoogleFonts.philosopher(fontSize: 17, color: Colors.white),
+                style: GoogleFonts.courgette(
+                  color: Colors.black,
+                  fontSize: 40,
+                ),
               ),
-            ),
-            if (isLoginFailed)
-              const AlertDialog(
-                title: Text('Alert!'),
+              const SizedBox(
+                height: 40,
               ),
-            const SizedBox(height: 30),
-            ElevatedButton.icon(
+              TextField(
+                style: GoogleFonts.philosopher(
+                    color: Colors.black, fontWeight: FontWeight.w300),
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  icon: Icon(
+                    MdiIcons.account,
+                    color: Colors.black,
+                    size: 27,
+                  ),
+                  labelText: 'Username',
+                ),
+              ),
+              const SizedBox(height: 25),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  icon: Icon(
+                    Icons.password,
+                    color: Colors.black,
+                  ),
+                  labelText: 'Password',
+                ),
+              ),
+              const SizedBox(height: 50),
+              ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
                 ),
-                onPressed: _handleSignIn,
-                icon: Icon(
-                  MdiIcons.google,
-                  color: Colors.white,
-                ),
-                label: Text(
-                  'Sign Up with Google',
-                  style: GoogleFonts.philosopher(
-                    color: Colors.white,
-                    fontSize: 17,
-                  ),
-                )),
-            const SizedBox(height: 20),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignUP()),
-                  );
+                onPressed: () async {
+                  String enteredUsername = _usernameController.text;
+                  String enteredPassword = _passwordController.text;
+
+                  AuthService authService = AuthService();
+                  bool isAuthenticated =
+                      await authService.login(enteredUsername, enteredPassword);
+
+                  if (isAuthenticated) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyHomePage()),
+                    );
+                  } else {
+                    setState(() {
+                      isLoginFailed = true;
+                    });
+                  }
                 },
                 child: Text(
-                  'Don\'t have a account ? Sign Up',
+                  'Login',
                   style: GoogleFonts.philosopher(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
-                )),
-          ],
+                      fontSize: 17, color: Colors.white),
+                ),
+              ),
+              if (isLoginFailed)
+                const AlertDialog(
+                  title: Text('Alert!'),
+                ),
+              const SizedBox(height: 30),
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                  ),
+                  onPressed: _handleSignIn,
+                  icon: Icon(
+                    MdiIcons.google,
+                    color: Colors.white,
+                  ),
+                  label: Text(
+                    'Sign Up with Google',
+                    style: GoogleFonts.philosopher(
+                      color: Colors.white,
+                      fontSize: 17,
+                    ),
+                  )),
+              const SizedBox(height: 20),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUP()),
+                    );
+                  },
+                  child: Text(
+                    'Don\'t have a account ? Sign Up',
+                    style: GoogleFonts.philosopher(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
+                  )),
+            ],
+          ),
         ),
       ),
     );
