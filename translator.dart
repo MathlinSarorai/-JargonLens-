@@ -155,7 +155,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Translation()),
+                              builder: (context) => Translation(
+                                    regText: scannedText,
+                                  )),
                         );
                       },
                       child: Text(
@@ -199,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
     scannedText = "";
     for (TextBlock block in recognisedText.blocks) {
       for (TextLine line in block.lines) {
-        scannedText = scannedText + line.text + "\n";
+        scannedText = "$scannedText${line.text}\n";
       }
     }
     textScanning = false;
